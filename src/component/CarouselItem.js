@@ -6,10 +6,13 @@ const cx = (obj) => Object.keys(obj).filter(key => obj[key]).join(' ');
 class CarouselItem extends Component {
     
     render(){
+        const isEnd = this.props.getIsEnd(this.props.id);
+//console.log(this.props.id + ' ' + isEnd);
+
         let className = cx({
             item: true,
-            left: this.props.id < this.props.currentId,
-            right: this.props.id > this.props.currentId,
+            left: this.props.id < this.props.currentId && !isEnd,
+            right: this.props.id > this.props.currentId || isEnd,
         })
 
         const path = require(this.props.path + '');
